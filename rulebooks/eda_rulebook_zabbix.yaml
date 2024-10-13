@@ -1,5 +1,5 @@
 ---
-- name: Listen for webhook 8001 and Debug
+- name: Listen for webhook 8111 and Debug
   hosts: all
   sources:
   - ansible.eda.webhook:
@@ -8,12 +8,11 @@
   rules:
   - name: Trigger action of scenario 1
     condition: >-
-      event.payload.host_host == 'demo-agent1'
+      event.payload.host_host == 'zabbix-agent-01'
       and event.payload.trigger_name == 'monitoring1_trigger1'
-      and event.payload.event_severity == 'High'
     action:
       run_job_template:
-        name: scenario1_action
+        name: Demo Job Template
         organization: Default
         job_args:
           extra_vars:
