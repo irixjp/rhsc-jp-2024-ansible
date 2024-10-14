@@ -1,0 +1,25 @@
+---
+- name: Listen for webhook 8112 for throttle demo
+  hosts: all
+  sources:
+    - ansible.eda.webhook:
+        host: 0.0.0.0
+        port: 8112
+  rules:
+    - name: throttle enabled
+      condition: >-
+        event.payload.throttle == 'enabled'
+      throttle:
+        once_within: 1 minutes
+      actions:
+        - run_job_template:
+            name: throttle_enable_job
+            organization: Default
+
+    - name: throttle disabled
+      condition: >-
+        event.payload.throttle == 'disabled'
+      actions:
+        - run_job_template:
+            name: throttle_disabled_job
+            organization: Default
