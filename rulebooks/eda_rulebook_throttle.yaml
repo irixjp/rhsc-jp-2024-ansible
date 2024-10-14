@@ -8,7 +8,7 @@
   rules:
     - name: throttle enabled
       condition: >-
-        event.payload.throttle == 'enabled'
+        event.payload.message == 'enabled'
       throttle:
         once_within: 1 minutes
         group_by_attributes:
@@ -20,7 +20,7 @@
 
     - name: throttle disabled
       condition: >-
-        event.payload.throttle == 'disabled'
+        event.payload.message == 'disabled'
       actions:
         - run_job_template:
             name: throttle_disabled_job
