@@ -22,3 +22,16 @@
                 z_event_id: "{{ event.payload.event_id }}"
                 z_event_severity: "{{ event.payload.event_severity }}"
                 z_trigger_name: "{{ event.payload.trigger_name }}"
+
+    - name: Trigger action of scenario 2
+      condition: >-
+        event.payload.host_host == 'zabbix-agent-01'
+        and event.payload.trigger_name == 'monitoring2_trigger2'
+      actions:
+        - debug:
+        - run_job_template:
+            name: test_jt
+            organization: Default
+            job_args:
+              extra_vars:
+                test_ext_vars: 1000
