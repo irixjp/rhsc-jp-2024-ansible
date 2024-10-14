@@ -1,0 +1,13 @@
+- hosts: all
+  tasks:
+    - name: Launch scenario1 workflow
+      awx.awx.workflow_launch:
+        organization: Default
+        workflow_template: "zabbix_eda_auto_response"
+        extra_vars:
+          scenario_num: "{{ scenario_num }}"
+          z_host_name: "{{ z_host_name }}"
+          z_event_severity: "{{ z_event_severity }}"
+          z_trigger_name: "{{ z_trigger_name }}"
+          z_host_id: "{{ z_host_id }}"
+          z_event_id: "{{ z_event_id }}"
