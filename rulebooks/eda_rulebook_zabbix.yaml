@@ -11,6 +11,6 @@
       event.payload.host_host == 'zabbix-agent-01'
       and event.payload.trigger_name == 'monitoring1_trigger1'
     action:
-      run_job_template:
+      run_workflow_template:
         name: Demo Workflow
         organization: Default
