@@ -11,6 +11,8 @@
         event.payload.throttle == 'enabled'
       throttle:
         once_within: 1 minutes
+        group_by_attributes:
+          - event.payload.message
       actions:
         - run_job_template:
             name: throttle_enable_job
