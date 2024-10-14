@@ -12,44 +12,5 @@
       and event.payload.trigger_name == 'monitoring1_trigger1'
     action:
       run_job_template:
-        name: Demo Job Template
+        name: Demo Workflow
         organization: Default
-        job_args:
-          extra_vars:
-            z_host_name: "{{ event.payload.host_host }}"
-            z_host_id: "{{ event.payload.host_id }}"
-            z_event_id: "{{ event.payload.event_id }}"
-            z_event_severity: "{{ event.payload.event_severity }}"
-            z_trigger_name: "{{ event.payload.trigger_name }}"
-  - name: Trigger action of scenario 2
-    condition: >-
-      event.payload.host_host == 'demo-agent1'
-      and event.payload.trigger_name == 'monitoring2_trigger2'
-      and event.payload.event_severity == 'High'
-    action:
-      run_job_template:
-        name: scenario2_action
-        organization: Default
-        job_args:
-          extra_vars:
-            z_host_name: "{{ event.payload.host_host }}"
-            z_host_id: "{{ event.payload.host_id }}"
-            z_event_id: "{{ event.payload.event_id }}"
-            z_event_severity: "{{ event.payload.event_severity }}"
-            z_trigger_name: "{{ event.payload.trigger_name }}"
-  - name: Trigger action of scenario 3
-    condition: >-
-      event.payload.host_host == 'demo-agent1'
-      and event.payload.trigger_name == 'monitoring3_trigger3'
-      and event.payload.event_severity == 'High'
-    action:
-      run_job_template:
-        name: scenario3_action
-        organization: Default
-        job_args:
-          extra_vars:
-            z_host_name: "{{ event.payload.host_host }}"
-            z_host_id: "{{ event.payload.host_id }}"
-            z_event_id: "{{ event.payload.event_id }}"
-            z_event_severity: "{{ event.payload.event_severity }}"
-            z_trigger_name: "{{ event.payload.trigger_name }}"
