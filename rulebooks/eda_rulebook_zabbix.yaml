@@ -1,5 +1,5 @@
 ---
-- name: Listen for webhook 8111 and Debug
+- name: Listen for webhook 8111 from Zabbix
   hosts: all
   sources:
   - ansible.eda.webhook:
@@ -12,5 +12,12 @@
       and event.payload.trigger_name == 'monitoring1_trigger1'
     action:
       run_workflow_template:
-        name: Demo Workflow
+        name: zabbix_eda_auto_response
         organization: Default
+        job_args:
+          extra_vars:
+            z_host_name: "{{ event.payload.host_host }}"
+            z_host_id: "{{ event.payload.host_id }}"
+            z_event_id: "{{ event.payload.event_id }}"
+            z_event_severity: "{{ event.payload.event_severity }}"
+            z_trigger_name: "{{ event.payload.trigger_name }}"
